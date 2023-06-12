@@ -308,3 +308,93 @@ li:hover::before {
     transform: rotate(0deg);
   }
 }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 1s;
+  animation: pulse 2s infinite;
+  animation: floating 2s ease-in-out infinite;
+  animation: rainbow 4s linear infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes rainbow {
+  0% {
+    color: white;
+  }
+  33% {
+    color: blue;
+  }
+  66% {
+    color: white;
+  }
+  100% {
+    color: blue;
+  }
+}
+.animate-rainbow {
+  animation: rainbow 4s linear infinite;
+}
+
+.animate-floating {
+  animation: floating 2s ease-in-out infinite;
+}
+
+@keyframes fade-in-out {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-fade-in-out {
+  animation: fade-in-out 3s infinite;
+}

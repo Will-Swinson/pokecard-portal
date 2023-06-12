@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { CgPokemon } from "react-icons/cg";
 import LoginContext from "../Context/LoginProvider";
-import SearchPokemonCard from "./SearchPokemonCard";
+import DashboardPokemonCard from "./DashboardPokemonCard";
+
 export default function DeckDashboard() {
-  const { handleDisplayDeck, pokeCards, pokeDeckIds, showDeck } =
+  const { handleDisplayDeck, pokeCards, pokeDeckIds, showDeck, isNoFavorite } =
     useContext(LoginContext);
 
   const favFilteredPokeCards = pokeDeckIds.map((pokeId) => {
@@ -17,9 +18,8 @@ export default function DeckDashboard() {
   });
 
   const favCards = favFilteredPokeCards.map((card) => {
-    return <SearchPokemonCard key={card.id} pokeCardInfo={card} />;
+    return <DashboardPokemonCard key={card.id} pokeCardInfo={card} />;
   });
-
   return (
     <div className="bg-black h-screen w-screen mt-12 flex justify-start items-center flex-col">
       <div className="flex flex-col justify-center items-center">
@@ -42,6 +42,7 @@ export default function DeckDashboard() {
           {favCards}
         </div>
       )}
+      {isNoFavorite && <div className="text-red-600">{isNoFavorite}</div>}
     </div>
   );
 }

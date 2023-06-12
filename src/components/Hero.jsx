@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Lucario from "./Lucario";
 import { Link } from "react-router-dom";
+import AnimatedText from "./AnimatedText";
+// import classNames from "classnames";
 
 export default function Hero() {
   return (
     <>
       <div className="absolute flex flex-col w-80 text-white z-10 right-1/4 top-1/4 items-center">
-        <h1 className=" font-bold text-4xl">PokeCard Portal is ...</h1>
+        <h1 className="flex flex-col justify-center items-center font-bold text-4xl">
+          PokeCard Portal is <AnimatedText />
+        </h1>
 
-        <p className="text-2xl">
+        <p className="text-2xl mt-2">
           {" "}
           A community to share your favorite Pokemon and join a community of
           people who are ready to talk and share with.{" "}

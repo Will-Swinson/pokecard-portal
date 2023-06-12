@@ -5,6 +5,7 @@ import { set } from "react-hook-form";
 import axios from "axios";
 
 const CardComponent = ({ pokeCardInfo }) => {
+  const { handleRemoveFavorite } = useContext(LoginContext);
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -37,28 +38,13 @@ const CardComponent = ({ pokeCardInfo }) => {
     };
   }, []);
 
-  async function handleCardLike(event) {
-    event.stopPropagation();
-    event.target.classList.toggle("text-red-600");
-    const token = JSON.parse(localStorage.getItem("token"));
-    const addCardData = {
-      cardId: pokeCardInfo.pokeId,
-    };
-
-    await axios.post("/api/favorite", addCardData, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    console.log("clicked");
-  }
-
   return (
     <div className="bg-black ">
       <div ref={cardRef} className="card ">
         <CgPokemon
-          onClick={handleCardLike}
+          onClick={() => handleRemoveFavorite(pokeCardInfo.pokeId)}
           className={
-            "absolute z-50 p-0 m-0 -bottom-1 -left-1 w-14 h-14 cursor-pointer rounded-xl hover:bg-white"
+            "absolute z-50 p-0 m-0 -bottom-1 -left-1 w-14 h-14 cursor-pointer rounded-xl hover:bg-white text-red-600"
           }
         />
         <div
