@@ -1,5 +1,29 @@
 @tailwind base;
 @tailwind components;
+
+@layer components {
+  .deck-div {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+  }
+
+  .deck-div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #2563eb;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .deck-div:hover::before {
+    width: 100%;
+  }
+}
+
 @tailwind utilities;
 
 li {

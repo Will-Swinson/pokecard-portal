@@ -8,16 +8,8 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
   // Login Context
-  const { handleLogin } = useContext(LoginContext);
+  const { handleSignup } = useContext(LoginContext);
   const { doesExists } = useContext(LoginContext);
-
-  // useEffect(() => {
-  //   async function getLogin() {
-  //     const response = await axios.post("/api/login");
-  //     console.log(response.data);
-  //   }
-  //   getLogin();
-  // }, []);
 
   // Yup Validation Schema
   const validationSchema = Yup.object({
@@ -45,7 +37,7 @@ export default function Login() {
 
     // Form Submission
     onSubmit: (values) => {
-      handleLogin(values);
+      handleSignup(values);
     },
   });
 

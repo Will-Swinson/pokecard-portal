@@ -10,7 +10,6 @@ import PokeballIcon from "./PokeballIcon";
 
 export default function Header() {
   const { login } = useContext(LoginContext);
-  console.log(login);
   return (
     <header className="bg-black w-screen h-28 text-blue-600 flex justify-between items-end font-mono">
       <h1 className=" ml-10 mb-6 font-bold  text-4xl">PokeCard Portal</h1>
@@ -21,7 +20,7 @@ export default function Header() {
         </li>
         <li className="mr-12 mb-4 flex justify-center items-center cursor-pointer transition-transform hover:scale-110">
           <GiCardDraw className="mr-2" />
-          Decks
+          <Link to="/decks">Decks</Link>
         </li>
         <li className="mr-12 mb-4 flex justify-center items-center cursor-pointer transition-transform hover:scale-110">
           <CgPokemon className="mr-2" />

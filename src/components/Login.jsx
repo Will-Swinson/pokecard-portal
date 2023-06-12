@@ -9,20 +9,10 @@ export default function Login() {
   // Login Context
   const { handleLogin } = useContext(LoginContext);
 
-  // useEffect(() => {
-  //   async function getLogin() {
-  //     const response = await axios.post("/api/login");
-  //     console.log(response.data);
-  //   }
-  //   getLogin();
-  // }, []);
-
   // Yup Validation Schema
   const validationSchema = Yup.object({
     username: Yup.string().required("Username Required"),
-    email: Yup.string()
-      .email(`"@" Invalid email address`)
-      .required("Email Required"),
+
     password: Yup.string()
       .required("Password Required")
       .min(8, "Must be 8 characters")
@@ -34,7 +24,6 @@ export default function Login() {
   const formik = useFormik({
     initialValues: {
       username: "",
-      email: "",
       password: "",
       terms: [],
     },
@@ -79,27 +68,7 @@ export default function Login() {
                 ) : null}
               </div>
             </div>
-            <div className="mt-6 ">
-              <div className="pb-4 ">
-                <label htmlFor="email" className="mr-2 text-2xl font-bold">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter Your Email"
-                  className="border-2 border-black rounded-lg text-center p-2 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-transparent md:mx-auto md:my-0"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                ></input>
-                {formik.touched.email && formik.errors.email ? (
-                  <p className="flex justify-center ml-20 text-red-600">
-                    {formik.errors.email}
-                  </p>
-                ) : null}
-              </div>
-            </div>
+
             <div className="mt-6 ">
               <div className="pb-4">
                 <label htmlFor="password" className="mr-2 text-2xl font-bold">

@@ -1,33 +1,11 @@
 import React from "react";
 import SearchPokemonCard from "./SearchPokemonCard";
-import dotenv from "dotenv";
 import axios from "axios";
-import { useState, useEffect } from "react";
-const POKE_KEY = "48f471fc-a984-4e21-b4ad-a943c576fd2c";
+import { useState, useEffect, useContext } from "react";
+import LoginContext from "../Context/LoginProvider";
 
 export default function SearchBoard() {
-  const [pokeCards, setPokeCards] = useState([]);
-  const [pokeSearch, setPokeSearch] = useState("");
-
-  useEffect(() => {
-    async function getPokemonCards() {
-      try {
-        const response = await axios.get(
-          "https://api.pokemontcg.io/v2/cards?query=images&pageSize=250",
-          {
-            headers: {
-              "X-Api-Key": POKE_KEY,
-            },
-          }
-        );
-        setPokeCards(response.data.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    getPokemonCards();
-  }, []);
+  const { pokeCards, pokeSearch, setPokeSearch } = useContext(LoginContext);
 
   function handleSearch(event) {
     setPokeSearch(event.target.value);
@@ -38,8 +16,8 @@ export default function SearchBoard() {
   });
 
   const PokemonCards = filteredCards.map((card) => {
-    console.log(card);
     const pokeCardInfo = {
+      pokeId: card.id,
       smallImg: card.images.small,
       largeImg: card.images.large,
       name: card.name,

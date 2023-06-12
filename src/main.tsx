@@ -5,9 +5,11 @@ import { LoginProvider } from "./Context/LoginProvider";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <BrowserRouter>
-    <LoginProvider>
-      <App />
-    </LoginProvider>
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <LoginProvider>
+        <App />
+      </LoginProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

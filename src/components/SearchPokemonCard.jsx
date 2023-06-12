@@ -1,5 +1,8 @@
 import { CgPokemon } from "react-icons/cg";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
+import LoginContext from "../Context/LoginProvider";
+import { set } from "react-hook-form";
+import axios from "axios";
 
 const CardComponent = ({ pokeCardInfo }) => {
   const cardRef = useRef(null);
@@ -34,14 +37,25 @@ const CardComponent = ({ pokeCardInfo }) => {
     };
   }, []);
 
-  function handleCardLike(event) {}
-
+  async function handleCardLike(event) {
+    event.stopPropagation();
+    event.target.classList.toggle("text-red-600");
+    const token = localStorage.getItem("token");
+    const addCardData = {
+      cardId: pokeCardInfo.pokeId,
+      token,
+    };
+    await axios.post("/api/favorite", addCardData);
+    console.log("clicked");
+  }
   return (
     <div className="bg-black ">
       <div ref={cardRef} className="card ">
         <CgPokemon
           onClick={handleCardLike}
-          className="absolute z-50 p-0 m-0 -bottom-1 -left-1 w-14 h-14 cursor-pointer rounded-xl hover:bg-red-600"
+          className={
+            "absolute z-50 p-0 m-0 -bottom-1 -left-1 w-14 h-14 cursor-pointer rounded-xl hover:bg-white"
+          }
         />
         <div
           className="absolute inset-0 bg-center bg-no-repeat bg-cover"
